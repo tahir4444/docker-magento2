@@ -1,0 +1,43 @@
+version: '2'
+services:
+  apache:
+#    build:
+#      context: .
+#      dockerfile: build/apache/php-7.4/Dockerfile
+    # image: rifkat/magento-php-apache:7.4
+    image: tahir4444/fsthr:1.1
+    ports:
+      - "80:80"
+      - "9001:9000" # xdebug
+    volumes:
+      - ./src:/var/www/html
+      - ~/.composer/cache:/var/www/.composer/cache
+      - ~/.npm:/var/www/.npm
+    environment:
+      XDEBUG_CONFIG: "remote_host=localhost"
+      PHP_IDE_CONFIG: "serverName=Docker"
+#      VIRTUAL_HOST: "example.localhost"
+
+  elasticsearch:
+    build:
+      context: .
+      dockerfile: build/elasticsearch/Dockerfile
+    environment:
+      - cluster.name=docker-cluster
+      - bootstrap.memory_lock=true
+      - "ES_JAVA_OPTS=-Xms512m -Xmx512m"
+      - node.name=node-1
+      - cluster.initial_master_nodes=node-1
+    ulimits:
+      memlock:
+        soft: -1
+        hard: -1
+    volumes:
+      - ./elasticsearchdata:/usr/share/elasticsearch/data
+    ports:
+      - 9200:9200
+
+
+volumes:
+  dbdata:
+    driver: local
