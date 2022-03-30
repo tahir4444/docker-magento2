@@ -4,7 +4,6 @@ services:
 #    build:
 #      context: .
 #      dockerfile: build/apache/php-7.4/Dockerfile
-    # image: rifkat/magento-php-apache:7.4
     image: tahir4444/fsthr:1.1
     ports:
       - "80:80"
@@ -17,6 +16,12 @@ services:
       XDEBUG_CONFIG: "remote_host=localhost"
       PHP_IDE_CONFIG: "serverName=Docker"
 #      VIRTUAL_HOST: "example.localhost"
+    depends_on:
+      - db
+    links:
+      - db
+    networks:
+      - <project_name>-network
 
   elasticsearch:
     build:
@@ -36,7 +41,12 @@ services:
       - ./elasticsearchdata:/usr/share/elasticsearch/data
     ports:
       - 9200:9200
+    networks:
+      - <project_name>-network
 
+networks:
+  <project_name>-network:
+    driver: bridge
 
 volumes:
   dbdata:
