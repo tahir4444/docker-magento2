@@ -16,10 +16,10 @@ services:
       XDEBUG_CONFIG: "remote_host=localhost"
       PHP_IDE_CONFIG: "serverName=Docker"
 #      VIRTUAL_HOST: "example.localhost"
-    # depends_on:
-      # - db
-    # links:
-      # - db
+#      depends_on:
+#       - db
+#       links:
+#       - db
     networks:
       - <project_name>-network
 
@@ -30,7 +30,7 @@ services:
     environment:
       - cluster.name=docker-cluster
       - bootstrap.memory_lock=true
-      - "ES_JAVA_OPTS=-Xms512m -Xmx512m"
+      - "ES_JAVA_OPTS=-Xms2048m -Xmx2048m"
       - node.name=node-1
       - cluster.initial_master_nodes=node-1
     ulimits:
