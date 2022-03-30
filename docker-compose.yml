@@ -21,7 +21,7 @@ services:
 #       links:
 #       - db
     networks:
-      - <project_name>-network
+      - -network
 
   elasticsearch:
     build:
@@ -42,10 +42,10 @@ services:
     ports:
       - 9200:9200
     networks:
-      - <project_name>-network
+      - -network
 
 networks:
-  <project_name>-network:
+  -network:
     driver: bridge
 
 volumes:
