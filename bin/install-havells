@@ -21,4 +21,4 @@ cp ~/.composer/auth.json var/composer_home/auth.json \
 mv package.json.sample package.json ; mv Gruntfile.js.sample Gruntfile.js;
 npm i;
 composer dump-autoload -o \
-&& clear && echo "Magento was installed: Yes."
+&& echo "Magento was installed: Yes."
