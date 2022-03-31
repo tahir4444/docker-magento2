@@ -1,8 +1,8 @@
 #!/usr/bin/env bash
 
 git init
-git remote add origin https://github.com/tahir4444/installable-magento.git
-git remote set-url origin https://github.com/tahir4444/installable-magento.git
+git remote add origin https://github.com/tahir4444/install-m2.git
+git remote set-url origin https://github.com/tahir4444/install-m2.git
 git pull origin master;
 
 
