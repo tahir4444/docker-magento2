@@ -1,4 +1,4 @@
-FROM elasticsearch:8.1.1
+FROM elasticsearch:7.6.0
 
 MAINTAINER echo <tahir4444@gmail.com>
 
